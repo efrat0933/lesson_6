@@ -1,5 +1,5 @@
 import  fs  from 'fs';
-import { userSchema, bcryptPassword } from '../models/user.js';
+import { userSchema, bcryptPassword, comparePassword } from '../models/user.js';
 
  
 export const getAllUsers = function(req, res, next) {
@@ -26,13 +26,15 @@ export const login = async function(req, res, next) {
         if (result.error)  {
             res.status(401).send(result.error);
         }
-        const  passsword =  await bcryptPassword(user.password, res);
+        
+        //ליצירת סיסמא מוצפנת בלבד, לא קשור לפונקצית לוגין, רק ליצירת משתמש חדש
+        //const  passsword =  await bcryptPassword(user.password, res);
 
-
-        const users =   JSON.parse(data);
+        const users = JSON.parse(data);
         const findUser = users.find(u => u.username == user.username);
         if (findUser) {
-            if (findUser.password == passsword) {
+            const isEqual = await comparePassword(user.password, findUser.password);
+            if (isEqual) {
                 res.status(200).send('login');
             } else {
             res.status(401).send('unauthorized');

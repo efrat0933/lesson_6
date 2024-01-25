@@ -1,6 +1,6 @@
 [
-    { "name": "efrat", "username": "efrat1 ", "password": "123456"},
-    { "name": "efrat", "username": "efrat2", "password": "123456"},
-    { "name": "efrat", "username": "efrat4", "password": "123456"},
-    { "name": "efrat", "username": "efrat3", "password": "123456"}
+    { "name": "efrat", "username": "efrat1 ", "password": "$2b$10$JUvjs93BX4nk2UF6Po9h.uGC0ctF7mi43mI5CU16gO8t5Jxql39o."},
+    { "name": "efrat", "username": "efrat2", "password": "$2b$10$JUvjs93BX4nk2UF6Po9h.uGC0ctF7mi43mI5CU16gO8t5Jxql39o."},
+    { "name": "efrat", "username": "efrat4", "password": "$2b$10$JUvjs93BX4nk2UF6Po9h.uGC0ctF7mi43mI5CU16gO8t5Jxql39o."},
+    { "name": "efrat", "username": "efrat3", "password": "$2b$10$JUvjs93BX4nk2UF6Po9h.uGC0ctF7mi43mI5CU16gO8t5Jxql39o."}
 ]
