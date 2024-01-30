@@ -22,9 +22,9 @@ export const login = async function(req, res, next) {
 
         const user = req.body;
 
-        const result = userSchema.validate(user);
-        if (result.error)  {
-            res.status(401).send(result.error);
+        const {error, object} = userSchema.validate(user);
+        if (error)  {
+            res.status(401).send(error);
         }
         
         //ליצירת סיסמא מוצפנת בלבד, לא קשור לפונקצית לוגין, רק ליצירת משתמש חדש
@@ -46,5 +46,19 @@ export const login = async function(req, res, next) {
         }
     })
    
+}
+
+export const signup = function(req, res) {
+    const user = req.body;
+    const {error, value} = userSchema.validate(user, {abortEarly: false}); 
+    console.log(error);
+    if (error) {
+        res.status(401).send(error);
+    } else {
+      res.status(200).send('sucess');  
+    }
+
+    
+    
 }
 

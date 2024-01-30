@@ -4,18 +4,38 @@ import bcrypt from 'bcrypt';
 const saltRounds = 10;
 
 
+// https://github.com/nikitapryymak/basic-joi-validator/blob/develop/validator.js
+
 // ספרית joi מאפשרת לנו להגדיר ולידציות על שדה קלט מהמשתמש
 // אפשר לראות את הסוגים השונים 
 export const userSchema = Joi.object({
   username: Joi.string()
-    .alphanum()
-    .min(3)
-    .max(30)
-    .required(),
+    .alphanum() // רק אותיות
+    .min(3)  // לפחות 3 תווים 
+    .max(30) // מקסימום 30 תוים 
+    .required(), // שדה חובה 
 
-  password: Joi.string()
+  password: Joi.string() 
     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$'))
-    .required()
+    .required(),
+  
+    email: Joi.string().email().required().trim(),
+
+
+  confirmPassword: Joi.ref('password'),
+  address: {
+    state: Joi.string(),
+    city: Joi.valid(Joi.in('Jerusalem')),
+  }, 
+  DOB: Joi.date().greater(new Date("2006-0-01")),
+  hobbies: Joi.array(),
+  isParent: Joi.boolean(),
+  children: Joi.when('isParent', {
+    is: true, 
+    then: Joi.number().min(1).required(),
+    otherwise: Joi.valid(0).optional()
+  })
+
 });
 
 
